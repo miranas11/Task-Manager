@@ -1,6 +1,6 @@
 # Task Manager
 
-A simple task manager
+A simple responsive task manager built using Next.js
 [Live Link](https://task-manager-new-one.vercel.app/)
 
 ## Installation
