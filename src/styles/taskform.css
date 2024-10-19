@@ -1,0 +1,101 @@
+.task-input-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+    flex-direction: column;
+}
+
+.task-form {
+    width: 400px;
+    background-color: #2e2e2e;
+    border-radius: 10px;
+    padding: 5px 20px;
+    margin-top: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+}
+
+.task-form:not(.active) .task-textarea,
+.task-form:not(.active) .task-select,
+.task-form:not(.active) .task-actions {
+    display: none;
+}
+
+.task-label {
+    margin-bottom: 5px;
+    color: #a0a0a0;
+}
+
+.task-input-initial,
+.task-input,
+.task-textarea,
+.task-select {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0px;
+    background-color: #333;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    box-sizing: border-box;
+}
+
+.button {
+    margin: 15px 10px 15px 10px;
+    padding: 10px;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.save-btn {
+    background-color: green;
+}
+
+.cancel-btn {
+    background-color: grey;
+}
+
+.task-button:hover {
+    background-color: #45a049;
+}
+
+.task-actions {
+    display: flex;
+    justify-content: space-between;
+}
+
+button:focus,
+input:focus,
+textarea:focus,
+select:focus {
+    outline: none;
+    box-shadow: 0 0 5px #aaa;
+}
+
+@media (max-width: 600px) {
+    .task-form {
+        width: 280px;
+        padding: 3px 13px;
+        margin-top: 8px;
+    }
+
+    .task-input-initial,
+    .task-input,
+    .task-textarea,
+    .task-select {
+        padding: 7px;
+        margin: 8px 0px;
+        font-size: 10px;
+    }
+
+    .button {
+        margin: 12px 8px;
+        padding: 6px;
+        color: white;
+        font-size: 10px;
+    }
+}

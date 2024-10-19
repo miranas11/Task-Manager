@@ -1,0 +1,125 @@
+.task-input-container {
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+}
+
+.tasks-container {
+    margin-top: 50px;
+}
+
+.tasks-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.tasks-table th,
+.tasks-table td {
+    border: 1px solid #ccc;
+    padding: 12px;
+    text-align: left;
+    font-size: 18px;
+}
+
+.tasks-table th {
+    background-color: #2e2e2e;
+    color: white;
+    font-weight: bold;
+}
+
+.tasks-table tr {
+    background-color: #444444;
+}
+
+.tasks-table tr:nth-child(even) {
+    background-color: #333333;
+}
+
+.tasks-table tr:hover {
+    background-color: #666666;
+    cursor: pointer;
+}
+
+.tasks-table td {
+    font-weight: 500;
+    color: black;
+    padding: 10px 30px;
+    font-size: 16px;
+}
+
+.task.completed td {
+    text-decoration: line-through;
+    font-weight: 700;
+    color: white;
+}
+
+.btn {
+    width: 60px;
+    border-radius: 5px;
+    padding: 7px 9px;
+    margin-bottom: 5px;
+    color: white;
+    cursor: pointer;
+    border: none;
+}
+
+.edit-btn {
+    background-color: #565656;
+}
+
+.edit-btn:hover {
+    background-color: #5d5d5d;
+}
+
+.delete-btn {
+    background-color: red;
+}
+
+.delete-btn:hover {
+    background-color: rgb(253, 115, 115);
+}
+
+.edit-field {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0px;
+    background-color: #333;
+    border-color: grey;
+    border-radius: 5px;
+    color: white;
+    box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+    .task-input-container {
+        padding: 15px;
+    }
+    .tasks-table th {
+        padding: 10px;
+        font-size: 12px;
+    }
+    .tasks-table td {
+        padding: 0px 6px;
+        font-size: 9px;
+    }
+
+    .edit-field {
+        width: 90px;
+        font-size: 8px;
+        padding: 5px 3px;
+    }
+    .task-select {
+        font-size: 8px;
+        padding: 5px 3px;
+    }
+
+    .btn {
+        width: 40px;
+        margin-bottom: 3px;
+        border-radius: 3px;
+        padding: 4px 6px;
+        font-size: 10px;
+    }
+}
