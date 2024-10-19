@@ -5,7 +5,7 @@
 }
 
 .tasks-container {
-    margin-top: 50px;
+    margin-top: 10px;
 }
 
 .tasks-table {
@@ -55,14 +55,18 @@
     color: white;
 }
 
+.btn-container {
+    display: flex;
+    gap: 5px;
+}
+
 .btn {
-    width: 60px;
+    /* width: 60px; */
     border-radius: 5px;
     padding: 7px 9px;
     margin-bottom: 5px;
     color: white;
     cursor: pointer;
-    border: none;
 }
 
 .edit-btn {
@@ -79,6 +83,14 @@
 
 .delete-btn:hover {
     background-color: rgb(253, 115, 115);
+}
+
+.complete-btn {
+    background-color: green;
+}
+
+.undo-btn {
+    background-color: #5d5d5d;
 }
 
 .edit-field {
@@ -115,11 +127,16 @@
         padding: 5px 3px;
     }
 
+    .btn-container {
+        height: auto;
+        flex-direction: column;
+        gap: 1px;
+    }
+
     .btn {
-        width: 40px;
         margin-bottom: 3px;
         border-radius: 3px;
-        padding: 4px 6px;
-        font-size: 10px;
+        padding: 4px;
+        font-size: 9px;
     }
 }

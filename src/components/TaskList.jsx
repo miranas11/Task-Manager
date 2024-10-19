@@ -40,12 +40,10 @@ const TaskList = ({ initialTasks, editTasks }) => {
     };
 
     const saveEdit = (index) => {
-        setTasks((prevTasks) => {
-            const newTasks = [...prevTasks];
-            newTasks[index] = { ...editedTask };
-            return newTasks;
-        });
-        editTasks(tasks);
+        const newTasks = [...tasks];
+        newTasks[index] = { ...editedTask };
+        setTasks(newTasks);
+        editTasks(newTasks);
         setEditingIndex(null);
     };
 
@@ -89,10 +87,10 @@ const TaskList = ({ initialTasks, editTasks }) => {
                             className={`task ${
                                 task.completed ? "completed" : ""
                             }`}
-                            onClick={() => {
-                                editingIndex !== index &&
-                                    toggleCompletion(index);
-                            }}
+                            // onClick={() => {
+                            //     editingIndex !== index &&
+                            //         toggleCompletion(index);
+                            // }}
                             style={{
                                 backgroundColor: task.completed
                                     ? "grey"
@@ -162,26 +160,44 @@ const TaskList = ({ initialTasks, editTasks }) => {
                                     <td>{task.description}</td>
                                     <td>{getPriorityString(task.priority)}</td>
                                     <td>
-                                        <button
-                                            type="button"
-                                            className="edit-btn btn"
-                                            onClick={(event) => {
-                                                event.stopPropagation();
-                                                startEditing(index);
-                                            }}
-                                        >
-                                            Edit
-                                        </button>
-                                        <button
-                                            type="button"
-                                            className="delete-btn btn"
-                                            onClick={(event) => {
-                                                event.stopPropagation();
-                                                deleteTask(index);
-                                            }}
-                                        >
-                                            Delete
-                                        </button>
+                                        <div className="btn-container">
+                                            <button
+                                                type="button"
+                                                className="edit-btn btn"
+                                                onClick={(event) => {
+                                                    event.stopPropagation();
+                                                    startEditing(index);
+                                                }}
+                                            >
+                                                Edit
+                                            </button>
+                                            <button
+                                                type="button"
+                                                className="delete-btn btn"
+                                                onClick={(event) => {
+                                                    event.stopPropagation();
+                                                    deleteTask(index);
+                                                }}
+                                            >
+                                                Delete
+                                            </button>
+                                            <button
+                                                type="button"
+                                                className={
+                                                    task.completed
+                                                        ? "undo-btn btn"
+                                                        : "complete-btn btn"
+                                                }
+                                                onClick={() => {
+                                                    editingIndex !== index &&
+                                                        toggleCompletion(index);
+                                                }}
+                                            >
+                                                {task.completed
+                                                    ? "Undo"
+                                                    : "Complete"}
+                                            </button>
+                                        </div>
                                     </td>
                                 </>
                             )}

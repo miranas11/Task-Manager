@@ -1,63 +1,61 @@
 import { useState, useEffect } from "react";
 import TaskForm from "../components/TaskForm";
 import TaskList from "../components/TaskList";
+import tasksArray from "../inititalTasks.js";
+import SearchBar from "@/components/SearchBar";
 
-export async function getServerSideProps() {
-    const initTasks = [
-        {
-            name: "FirstTask",
-            description: "first task",
-            priority: 3,
-            completed: false,
-        },
-        {
-            name: "SecondTask",
-            description: "second task",
-            priority: 1,
-            completed: true,
-        },
-        {
-            name: "ThirdTask",
-            description: "third task",
-            priority: 2,
-            completed: false,
-        },
-    ];
+export const getServerSideProps = async () => {
+    const initialTasks = tasksArray;
 
     return {
         props: {
-            initialServerTasks: initTasks,
+            initialTasks,
         },
     };
-}
+};
 
-function Home({ initialServerTasks }) {
+function Home({ initialTasks }) {
     const [tasks, setTasks] = useState([]);
 
+    const [filteredTasks, setFilteredTasks] = useState([]);
+
     useEffect(() => {
-        const localTasks = JSON.parse(localStorage.getItem("tasks")) || [];
-        console.log(localTasks);
-        const tasksToUse = localTasks.length ? localTasks : initialServerTasks;
-        setTasks(tasksToUse);
-    }, [initialServerTasks]);
+        let savedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+
+        if (!savedTasks || savedTasks.length === 0) {
+            savedTasks = initialTasks;
+        }
+
+        setTasks(savedTasks);
+        setFilteredTasks(savedTasks);
+    }, []);
 
     const editTasks = (newTasks) => {
         setTasks(newTasks);
+        setFilteredTasks(newTasks);
+        localStorage.setItem("tasks", JSON.stringify(newTasks));
     };
 
     const addTask = (task) => {
-        setTasks((prevTasks) => [...prevTasks, { ...task, completed: false }]);
-        console.log("Task Added: ", task);
+        setTasks((prevTasks) => {
+            const updatedTasks = [...prevTasks, { ...task, completed: false }];
+            localStorage.setItem("tasks", JSON.stringify(updatedTasks));
+            setFilteredTasks(updatedTasks);
+            return updatedTasks;
+        });
     };
-
-    useEffect(() => {
-        localStorage.setItem("tasks", JSON.stringify(tasks));
-    }, [tasks]);
 
     return (
         <div className="task-input-container">
             <TaskForm addTask={addTask} />
-            <TaskList initialTasks={tasks} editTasks={editTasks} />
+            <SearchBar
+                initialTasks={initialTasks}
+                filterTasks={(filteredTasks) => {
+                    // console.log(filteredTasks);
+                    setFilteredTasks(filteredTasks);
+                }}
+            ></SearchBar>
+            <TaskList initialTasks={filteredTasks} editTasks={editTasks} />
         </div>
     );
 }
